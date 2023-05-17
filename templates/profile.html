@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+
+{% block cart %}
+
+{{element}}
+
+ {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+ <div class="row">
+  
+  {% if messages %}
+        {% for b in messages %}
+         <p {% if b.tags %} class="alert alert-{{b.tags}} alert-dismissible mb-5" role="alert" {%endif%}> {{b}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   
+         </p>
+         {% endfor %}
+         {% endif %}
+         
+  <h3>Welcome <span class="text-capitalize">{{request.user.first_name}}</span></h3>
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn {{active}}">Profile</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn">Address</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <form action="" method="post">
+    {% csrf_token %}
+    
+    {% for b in form %}
+    <div class="mb-3 col-lg-6 form-group">
+      {{b.label_tag}}
+        {{b}}
+        <small class="text-danger">{{b.errors| striptags}}</small>
+    </div>
+    {%endfor%}
+
+   
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+   </form>
+
+   {% if form.non_field_errors %}
+       {% for error in form.non_field_errors %}
+       <p class="alert alert-danger my-3">{{error}}</p>
+       {% endfor %}
+       {% endif %}
+
+  </div>
+ </div>
+</div>
+{% endblock  %}

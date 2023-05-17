@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %} 
+{%load static %}
+ {% block title %} Activate Account {%endblock %} 
+
+
+{% block body %}
+
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-6 offset-sm-3">
+      <h3 class="text-center">Email Verification </h3>
+      <hr />
+      <p> If you have already registered yourself on our site ,
+         but forgot to verify your email then request for new mail to activate your account
+      </p>
+      
+      {% comment %} <form method='POST'  class=" shadow p-5">
+        {% csrf_token %}
+        
+        <div class="mb-3 form-group">
+          
+            {{form}}
+        
+         </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" type="submit">Request New Email</button>
+        </div>
+</form> {% endcomment %}
+
+
+<hr>
+
+<form method='POST'  class=" shadow text-center p-2">
+  {% csrf_token %}
+  <div class="mb-3 form-group">
+    
+    <label for="exampleInputEmail1" class="form-label fw-bold">Email address : </label>
+    {{form.email}}
+  
+  </div>
+
+  <div class="text-center mt-3">
+    <button class="btn btn-primary" type="submit">Request New Email</button>
+</div>
+
+</form>
+
+    
+    </div>
+  </div>
+</div>
+
+{%endblock%}

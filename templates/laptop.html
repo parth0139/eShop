@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+ {% load static %}
+  {% block title %}Laptop{% endblock title %}
+
+  {% block cart %}
+
+{{element}}
+
+ {% endblock %}
+
+   {% block body %}
+<div class="container my-5 ">
+  <div class="row">
+    <div class="col-sm-3 ">
+      <div class="list-group ">
+        <a
+          href="{% url 'laptop' 'all' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          All Laptop
+        </a>
+
+        <a
+          href="{% url 'laptop' 'Hp' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Hp
+        </a>
+
+        <a
+          href="{% url 'laptop' 'Lenovo' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Lenovo
+        </a>
+
+        <a
+          href="{% url 'laptop' 'Acer' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >
+          Acer
+          </a
+        >
+
+        <a
+          href="{% url 'laptop' 'Samsung' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Samsung
+        </a>
+
+        <a
+          href="{% url 'laptop'  'Dell' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Dell
+        </a>
+
+        <a
+          href="{% url 'laptop' 'Asus' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Asus
+        </a>
+
+        <a
+          href="{% url 'laptop'  'Microsoft' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+        >
+          Microsoft
+        </a>
+
+        <a
+        href="{% url 'laptop'  'Apple' %}"
+        class="list-group-item list-group-item-action"
+        aria-current="true"
+      >
+        Apple
+      </a>
+
+      </div>
+    </div>
+      <div class="col-sm-9">
+        <div class="row">
+
+          {% if not laptop %} 
+              <h3> No Laptops found </h3>
+      {%endif%}
+         
+          {% for p in laptop %}
+
+          <div class="col-sm-4 text-center border border-light-subtle mb-4">
+            <a href="{% url 'product-detail' p.id %}" class="btn">
+              <div class="item">
+                <img
+                  src="{{p.product_image.url}}"
+                  alt=""
+                  height="200"
+                  class="img-fluid"
+                />
+                <div class="fw-bold">{{p.title}}</div>
+                <div class="fw-bold">
+                  Rs. {{p.discounted_price}}
+                  <small class="fw-light text-decoration-line-through">
+                    {{product.selling_price}}</small
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+          {%endfor%}
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

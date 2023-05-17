@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{%load static %} 
+
+
+{% block title %}
+ Home
+{% endblock %}
+
+
+{% block cart %}
+
+{{element}}
+
+ {% endblock %}
+
+
+{% block body %}
+
+
+{% if messages %}
+
+<div class="m-3">
+
+{% for b in messages %}
+ <p {% if b.tags %} class="alert alert-{{b.tags}} alert-dismissible mb-5" role="alert" {%endif%}> {{b}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+ </p>
+ {% endfor %}
+
+</div>
+
+ {% endif %}
+
+
+  <div id="carouselExampleIndicators" class="carousel slide  border border-black">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+    </div>
+    <div class="carousel-inner ">
+      <div class="carousel-item active">
+        <img src="{% static 'images/banner/b16.png' %}" class="d-block w-100 " alt="...">
+      </div>
+      <div class="carousel-item ">
+        <img src="{% static 'images/banner/b1.jpg' %}" class="d-block w-100 " alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner/b2.jpg' %}" class="d-block w-100 " alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner/b3.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner/b4.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      
+    </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- 1st Product Slider -->
+<div class="mt-5 hover mx-4 text-center border-top border-2 border-black">
+ <h2 class="fw-bold">Features</h2>
+ <!-- Slider 1 -->
+ <div class="owl-carousel owl-theme" id="slider">
+  <div class="item d-flex flex-column"><img src="{% static 'images/delivery.png' %}" alt="" height="100px"><span class="fs-5">Free Shipping</span></div>
+  <div class="item d-flex flex-column"><img src="{% static 'images/online.webp' %}" alt="" height="100px"><span class="fs-5">Online Order </span></div>
+  <div class="item d-flex flex-column"><img src="{% static 'images/save.png' %}" alt="" height="100px"><span class="fs-5">Save Money</span></div>
+  <div class="item d-flex flex-column"><img src="{% static 'images/promotions.webp' %}" alt="" height="100px"><span class="fs-5">Promotions</span></div>
+  <div class="item d-flex flex-column"><img src="{% static 'images/sell.jpg' %}" alt="" height="100px"><span class="fs-5">Happy Sell</span></div>
+  <div class="item d-flex flex-column"><img src="{% static 'images/support.png' %}" alt="" height="100px"><span class="fs-5">F24/7 Support</span></div>
+  
+ </div>
+</div>
+
+{% comment %} 
+<div class="mt-5 mx-2 shadow border-top border-2 border-black">
+  <h2>ShoppingX Deals of The Day</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme" id="slider1">
+  
+{% for b in temp %}
+<a href="{% url 'product-detail' %}" class='btn'>
+<div class="item"><img src="{% static 'images/product/1.jpg' %}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. 500</span></div>
+</a>
+  
+   {%endfor%}
+
+   {% comment %}
+   <div class="item"><img src="{% static 'images/product/1.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 1</span><br><span class="fs-5">Rs. 500</span></div>
+   <div class="item"><img src="{% static 'images/product/2.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 2</span><br><span class="fs-5">Rs. 300</span></div>
+   <div class="item"><img src="{% static 'images/product/3.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 3</span><br><span class="fs-5">Rs. 100</span></div>
+   <div class="item"><img src="{% static 'images/product/4.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 4</span><br><span class="fs-5">Rs. 700</span></div>
+   <div class="item"><img src="{% static 'images/product/5.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 5</span><br><span class="fs-5">Rs. 500</span></div>
+   <div class="item"><img src="{% static 'images/product/6.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 6</span><br><span class="fs-5">Rs. 400</span></div>
+   <div class="item"><img src="{% static 'images/product/7.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 7</span><br><span class="fs-5">Rs. 500</span></div>
+   <div class="item"><img src="{% static 'images/product/8.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 8</span><br><span class="fs-5">Rs. 300</span></div>
+   <div class="item"><img src="{% static 'images/product/9.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 9</span><br><span class="fs-5">Rs. 600</span></div>
+   <div class="item"><img src="{% static 'images/product/10.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 10</span><br><span class="fs-5">Rs. 900</span></div>
+   <div class="item"><img src="{% static 'images/product/11.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 11</span><br><span class="fs-5">Rs. 100</span></div>
+   <div class="item"><img src="{% static 'images/product/12.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 12</span><br><span class="fs-5">Rs. 200</span></div> 
+   
+  </div>
+ </div> {% endcomment %}
+
+
+ <div class=" mx-2 mt-5 shadow border-top border-2 border-black">
+  <h2>Winter Collection</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel  shadow owl-theme" id="slider2">
+  {% for b in winter %}
+  <a href="{% url 'product-detail' b.id %}" class="btn">
+<div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+</a>
+{%endfor%}
+
+  </div>
+  
+ </div>
+
+ <div class=" mx-2 mt-5 shadow border-top border-2 border-black">
+  <h2>Summer Collection</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme " id="slider3">
+  {% for b in summer %}
+  <a href="{% url 'product-detail' b.id %}" class="btn">
+<div class="item " ><img src="{{b.product_image.url}}" alt=""  height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+</a>
+{%endfor%}
+
+  </div>
+  
+ </div>
+
+ <div class=" mx-1 mt-5 shadow border-top border-2 border-black">
+  <h2>Shoe Collection</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme" id="slider4">
+
+    {% for b in shoe %}
+    <a href="{% url 'product-detail' b.id %}" class="btn">
+<div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+  </a>
+{%endfor%}
+
+  </div>
+  
+ </div>
+
+ <div class=" mx-1 mt-5 shadow border-top border-2 border-black">
+  <h2>Mobile</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme " id="slider5">
+
+    {% for b in mobile %}
+    <a href="{% url 'product-detail' b.id %}" class="btn ">
+<div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+  </a>
+{%endfor%}
+
+</div>
+</div>
+
+<div class=" mx-1 mt-5 shadow border-top border-2 border-black">
+  <h2>Laptops</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme " id="slider5">
+
+    {% for b in laptop %}
+    <a href="{% url 'product-detail' b.id %}" class="btn ">
+<div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+  </a>
+{%endfor%}
+
+</div>
+</div>
+
+
+<div class=" mx-1 mt-5 shadow border-top border-2 border-black">
+  <h2>Kids</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel shadow owl-theme " id="slider5">
+    {% for b in kids %}
+    <a href="{% url 'product-detail' b.id %}" class="btn ">
+<div class="item"><img src="{{b.product_image.url}}" alt="" height="200px"><span class="fw-bold">{{b.title}}</span><br><span class="fs-5">Rs. {{ b.discounted_price }}</span></div>
+  </a>
+{%endfor%}
+
+</div>
+</div>
+
+
+{% endblock %}

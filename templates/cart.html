@@ -1,0 +1,150 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Cart{% endblock%}
+{% block cart %}
+
+<span id="element"> {{element}} </span>
+
+{% endblock %}
+
+
+
+{% block body %}
+<div class="container my-5">
+  <div class="row">
+    <h1 class="text-center mb-5">Shopping Cart</h1>
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+       {% if not carts  %}
+
+          <h3>Cart is Empty</h3>
+
+          <div class="col-sm-3 text-center align-self-center">
+            <img
+              src="{% static 'images/emptycart.png' %}"
+              alt=""
+              srcset=""
+              class="img-fluid img-thumbnail shadow-sm"
+              height="150"
+              width="200"
+            />
+          </div>
+
+          {% else %}
+
+          <h3>Cart</h3>
+
+          {% for b in carts %}
+
+          <div class="row mb-2" id="current">
+            <hr />
+            <div class="col-sm-3 text-center align-self-center">
+              <img
+                src="{{b.product.product_image.url}}"
+                alt=""
+                srcset=""
+                class="img-fluid img-thumbnail shadow-sm"
+                height="150"
+                width="150"
+              />
+            </div>
+            <div class="col-sm-9">
+              <div>
+                <h5>{{b.product.title}}</h5>
+
+                {% comment %}
+                <p class="mb-2 text-muted small">{{b.product.description}}</p>
+                {% endcomment %}
+
+                <div class="my-3">
+                  <label for="quantity">Quantity:</label>
+                  <a class="minus-cart btn" pid="{{b.product.id}}"
+                    ><i class="fas fa-minus-square fa-lg"></i
+                  ></a>
+                  <span id="quantity">{{b.quantity}}</span>
+                  <a class="plus-cart btn" pid="{{b.product.id}}"
+                    ><i class="fas fa-plus-square fa-lg"></i
+                  ></a>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <a
+                    href="#"
+                    class="btn btn-sm btn-secondary mr-3 remove-cart"
+                    pid="{{b.product.id}}"
+                    >Remove item
+                  </a>
+                  <p class="mb-0">
+                    <span
+                      ><strong>Rs. {{b.product.discounted_price}}</strong></span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %} {%endif%}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body border border-3">
+          <h3>The Total Amount of</h3>
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+            >
+              Amount<span>Rs. <span id="amount">{{amount}}</span> </span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center px-0"
+            >
+              Shipping <span> Rs. <span id="ship"> {{shipping}}</span> </span>
+            </li>
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
+            >
+              <div><strong>Total</strong> <small>(including VAT)</small></div>
+              <span
+                ><strong>Rs. <span id="total">{{total}}</span></strong></span
+              >
+            </li>
+          </ul>
+
+          {% if total != 0 %}
+          <div class="d-grid" id="place">
+            <a href="{% url 'checkout' %}" class="btn btn-primary"
+              >Place Order</a
+            >
+          </div>
+
+          {%endif%}
+
+          <div class="d-grid mt-2">
+            <a href="{% url 'index' %} " class="btn btn-primary"
+              >Continue Shopping</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-4">We accept</h5>
+          <img
+            src="{% static 'images/payment.png' %}"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

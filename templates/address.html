@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+ {% load static %}
+
+ 
+
+ {% block title %}Address{% endblock %}
+
+ {% block cart %}
+
+{{element}}
+
+ {% endblock %}
+
+  {% block body %}
+<div class="container my-5">
+  <div class="row">
+    <h3>
+      Welcome <span class="text-capitalize">{{request.user.first_name}}</span>
+    </h3>
+    <div class="col-sm-2 border-end">
+      <ul class="list-unstyled">
+        <li class="d-grid">
+          <a href="{% url 'profile' %}" class="btn">Profile</a>
+        </li>
+        <li class="d-grid">
+          <a href="{% url 'address' %}" class="btn btn-primary">Address</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-9 offset-sm-1">
+
+
+      {% if messages %}
+
+      <div class="m-3">
+      
+      {% for b in messages %}
+       <p {% if b.tags %} class="alert alert-{{b.tags}} alert-dismissible mb-5" role="alert" {%endif%}> {{b}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      
+       </p>
+       {% endfor %}
+      
+      </div>
+      
+       {% endif %}
+
+
+      <div class="row">
+        {% for b in add %}
+
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h3>Address {{forloop.counter}}</h3>
+              <p><span class="fw-semibold">Name:</span> {{b.name}}</p>
+              <p><span class="fw-semibold">Phone: </span> {{b.phone}}</p>
+              <p><span class="fw-semibold">Locality:</span> {{b.address}}</p>
+
+              <p><span class="fw-semibold">City: </span>{{b.city}}</p>
+              <p><span class="fw-semibold">State: </span>{{b.state}}</p>
+              <p><span class="fw-semibold">Zipcode: </span>{{b.zipcode}}</p>
+            </div>
+          </div>
+        </div>
+
+        {%endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
